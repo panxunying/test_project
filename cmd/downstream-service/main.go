@@ -24,7 +24,7 @@ func DownstreamHandlerWithoutUpstream(c *gin.Context) {
 	err := c.ShouldBindJSON(req)
 	if err != nil {
 		c.JSON(400, gin.H{
-			"code":    1,
+			"code":    2,
 			"message": "failed_to_decode_request",
 			"data":    "error: " + err.Error(),
 		})
@@ -32,7 +32,7 @@ func DownstreamHandlerWithoutUpstream(c *gin.Context) {
 	}
 	if req.Expectation == "downstream_error" {
 		c.JSON(400, gin.H{
-			"code":    2,
+			"code":    3,
 			"message": "giving_back_an_expected_error",
 			"data":    "error: all according to the plan",
 		})
