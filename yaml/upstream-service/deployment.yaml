@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: upstream-service
+  labels:
+    app: upstream
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: upstream
+    template:
+      metadata:
+        labels:
+          app: upstream
+      spec:
+        containers:
+          - name: upstream
+            image: jamsman94/upstream-service:latest
+            ports:
+              - protocol: TCP
+                containerPort: 8080

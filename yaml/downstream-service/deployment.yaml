@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: downstream-service
+  labels:
+    app: downstream
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: downstream
+    template:
+      metadata:
+        labels:
+          app: downstream
+      spec:
+        containers:
+        - name: downstream
+          image: jamsman94/downstream-service:latest
+          ports:
+          - protocol: TCP
+            containerPort: 8081
