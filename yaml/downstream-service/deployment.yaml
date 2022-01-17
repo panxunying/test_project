@@ -4,23 +4,23 @@ metadata:
   name: downstream-service
   labels:
     app: downstream
-  spec:
-    replicas: 1
-    selector:
-      matchLabels:
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: downstream
+  template:
+    metadata:
+      labels:
         app: downstream
-    template:
-      metadata:
-        labels:
-          app: downstream
-      spec:
-        containers:
-        - name: downstream
-          image: jamsman94/downstream-service:latest
-          ports:
-          - protocol: TCP
-            containerPort: 8081
-          resources:
-            requests:
-              cpu: 10m
-              memory: 10Mi
+    spec:
+      containers:
+      - name: downstream
+        image: jamsman94/downstream-service:latest
+        ports:
+        - protocol: TCP
+          containerPort: 8081
+        resources:
+          requests:
+            cpu: 10m
+            memory: 10Mi
