@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+#apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: koderover
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "120"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+  name: gateway-ingress
+spec:
+  rules:
+    - host: upstreamapi.8slan.com
+      http:
+        paths:
+          - backend:
+              serviceName: upstream
+              servicePort: 8080
+            path: /
+            pathType: ImplementationSpecific
